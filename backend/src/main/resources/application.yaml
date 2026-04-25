@@ -1,3 +1,38 @@
 spring:
   application:
     name: backend
+  security:
+    bcrypt:
+      strength: 10 # BCrypt加密强度，默认为10
+  datasource:
+    url: jdbc:mysql://localhost:3307/taskflow?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456  # 改成你的 MySQL 密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQLDialect # 明确指定MySQL方言
+    show-sql: true
+server:
+  port: 8080
+jwt:
+  secret: your_jwt_secret_key_replace_with_a_strong_one_at_least_256_bit # 请替换为至少256位的强密钥
+  expiration: 120 # JWT过期时间，单位分钟，这里是2小时
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+logging:
+  level:
+    root: INFO
+    com.taskflow: DEBUG # 将com.taskflow包下的日志级别设置为DEBUG，方便调试
